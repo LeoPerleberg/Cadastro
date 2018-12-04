@@ -1,40 +1,48 @@
 <?php
 
-use Model\UsuarioDAO;
+include_once "../Model/Produto.php";
+include_once "../Model/ProdutoDAO.php";
 
-include_once "../Model/Usuario.php";
-include_once "../Model/UsuarioDAO.php";
-
+@session_start();
+@$id=$_POST['id'];
 @$nome=$_POST['nome'];
-@$sobrenome=$_POST['sobrenome'];
-@$whatsapp=$_POST['whatsapp'];
-@$celular=$_POST['celular'];
-@$endereco=$_POST['endereco'];
-@$cidade=$_POST['cidade'];
-@$estado=$_POST['estado'];
-@$email=$_POST['email'];
-@$pass=md5($_POST['pass']);
+@$categoria=$_POST['categoria'];
+@$preco=$_POST['preco'];
+@$produtor=$_SESSION['id'];
 
-$usuario = new Usuario($nome, $sobrenome, $whatsapp, $celular, $endereco, $cidade, $estado, $email);
-$usuario->setPass($pass);
+$produto = new Produto($produtor, $nome, $categoria, $preco);
 
-$usuarioDAO = new UsuarioDAO();
+$produtoDAO = new ProdutoDAO();
 
-if ($_POST['acao'] == NULL) {
-	header('Location: ../View/Index.php');
-}
 
 switch ($_POST['acao']) {
 	case "Cadastrar":
 		try {
-			$usuarioDAO->salvar($usuario);
-			echo("Usuario inserido com sucesso");
+			$produtoDAO->salvar($produto);
 			header('Location: ../View/Index.php');
 		} catch (\Exception $e) {
-			echo"Erro ao inserir usuario" . $e->getMessage();
+			echo"Erro ao inserir produto" . $e->getMessage();
 		}
 		break;
 	case "Editar":
+		try {
+			$produtoDAO->editar($pduto);
+			header('Location: ../View/Index.php');
+		} catch (\Exception $e) {
+			echo"Erro ao alterar usuario" . $e->getMessage();
+		}
+		break;
+	case "Solicitar":
+		try {
+			$produtoDAO->exibeum($id);
+		} catch (\Exception $e) {
+			echo"Erro ao alterar usuario" . $e->getMessage();
+		}
+		break;
+
+}
+
+/*	case "Editar":
 		try {
 			$usuarioDAO->editar($usuario);
 			header('Location: ../View/Index.php');
@@ -58,7 +66,7 @@ switch ($_POST['acao']) {
 			echo"Erro ao tentar deslogar" . $e->getMessage();
 		}
 		break;
-	case "Deletar perfil":
+	case "Deletar":
 		try {
 			$usuarioDAO->deletar();
 			$usuarioDAO->deslogar();
@@ -66,5 +74,4 @@ switch ($_POST['acao']) {
 		} catch (Exception $e) {
 			echo"Erro ao tentar deslogar" . $e->getMessage();
 		}
-		break;
-}
+		break;*/
