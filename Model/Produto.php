@@ -9,6 +9,7 @@ class Produto {
 	private $dt_adicao;
 	private $dt_modif;
 	private $situacao;
+	private $imagem;
 	
 	public function __construct($produtor, $nome, $categoria, $preco) {
 		$this->setProdutor($produtor);
@@ -80,6 +81,14 @@ class Produto {
 	public function setSituacao($situacao) {
 		$this->situacao = $situacao;
 	}
+	public function getImagem() {
+		return $this->imagem;
+	}
+
+	public function setImagem($imagem) {
+		$this->imagem = $imagem;
+	}
+
 
 
 

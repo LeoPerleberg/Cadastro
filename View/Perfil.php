@@ -30,7 +30,12 @@
 		<div class="col-12 col-md-3 border bg-light">
 			<div class="text-center">
 				<h1><?php echo "$usuario->nome $usuario->sobrenome"; ?></h1>
-				<img src="imagens_sistema/Logo.png" class="img-thumbnail">
+				<form action="../Controller/Usuario.php" method="POST" enctype="multipart/form-data">
+					<img src="imagens_sistema/Logo.png" class="img-thumbnail">
+					<label for="arquivo">Selecione a imagem</label>
+					<input type="file" class="form-control-file" name="arquivo">
+	                <input type="submit" class="btn btn-success" name="acao" value="Adcionar imagem" />
+				</form>
 			</div>
 		</div>
 		<div class="col-12 col-sm-6 col-md-9 border bg-light">
