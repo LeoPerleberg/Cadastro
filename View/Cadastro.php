@@ -13,13 +13,13 @@
                     <div class="form-group row">
                         <label for="nome" class="col-sm-2 col-form-label">Nome</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome"/>
+                            <input type="text" required="required" class="form-control" name="nome" id="nome" placeholder="Nome"/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="sobrenome" class="col-sm-2 col-form-label">Sobrenome</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="sobrenome" id="sobrenome" placeholder="Sobrenome"/>
+                            <input type="text" required="required" class="form-control" name="sobrenome" id="sobrenome" placeholder="Sobrenome"/>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -55,13 +55,13 @@
                     <div class="form-group row">
                         <label for="email" class="col-sm-2 col-form-label">Email</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="email" id="email" placeholder="Email"/>
+                            <input type="text" required="required" class="form-control" name="email" id="email" placeholder="Email"/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="senha" class="col-sm-2 col-form-label">Senha</label>
                         <div class="col-sm-10">
-                            <input type="password" class="form-control" name="pass" id="senha" placeholder="senha"/>
+                            <input type="password" required="required" class="form-control" name="pass" id="senha" placeholder="senha"/>
                         </div>
                     </div>
                 </div>

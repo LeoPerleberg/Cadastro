@@ -129,11 +129,24 @@ class UsuarioDAO extends \BD_Connection {
 			$stmt->execute();
 			if ($stmt->rowCount() > 0) {
 				$registro=$stmt->fetch(PDO::FETCH_OBJ);
-
+				
 				return $registro;
 			} else {
 				return FALSE;
 			}
+		} catch (\Exception $e) {
+			echo "Não foi possivel exibir. Erro:" . $e->getMessage();
+		}
+	}
+	
+	public function exibeNome($id) {
+		try {
+			$sql = "SELECT nome FROM usuario WHERE id = :id";
+			$stmt = parent::getConnection()->prepare($sql);
+			$stmt->bindValue(':id', $id);
+			$stmt->execute();
+			$registro=$stmt->fetch(PDO::FETCH_OBJ);
+			return $registro->nome;
 		} catch (\Exception $e) {
 			echo "Não foi possivel exibir. Erro:" . $e->getMessage();
 		}

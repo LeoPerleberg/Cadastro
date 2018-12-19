@@ -19,6 +19,9 @@
                 <li class="nav-item">
                     <a class="btn btn-dark" href="index.php">Home</a>
                 </li>
+                <li class="nav-item">
+                    <a class="btn btn-dark" href="Contate.php">Fale conosco</a>
+                </li>
                 <?php if (@$logado == 0) {
                 	echo '
 	                    <li class="nav-item">

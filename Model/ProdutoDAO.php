@@ -12,18 +12,20 @@ class ProdutoDAO extends \BD_Connection {
 		$nome = $produto->getNome();
 		$categoria = $produto->getCategoria();
 		$preco = $produto->getPreco();
-		$imagem = $produto->getImagem();
+		$medida = $produto->getMedida();
 		
 		try {
-			$sql = "INSERT INTO produto (produtor, nome, categoria, preco, dt_adicao, dt_modif, situacao, imagem)
-					VALUES (:produtor, :nome, :categoria, :preco, NOW(), NOW(), TRUE, :imagem)";
+			$sql = "INSERT INTO produto (produtor, nome, categoria, preco, medida, dt_adicao, dt_modif, situacao)
+					VALUES (:produtor, :nome, :categoria, :preco, :medida, NOW(), NOW(), TRUE)";
 			$stmt = parent::getConnection()->prepare($sql);
 			$stmt->bindValue(':produtor', $produtor);
 			$stmt->bindValue(':nome', $nome);
 			$stmt->bindValue(':categoria', $categoria);
 			$stmt->bindValue(':preco', $preco);
-			$stmt->bindValue(':imagem', $imagem);
+			$stmt->bindValue(':medida', $medida);
 			$stmt->execute();
+			$lastId = parent::getConnection()->lastInsertId();
+			return  $lastId;
 		} catch (\Exception $e) {
 			echo "Não foi possivel inserir. Erro:" . $e->getMessage();
 		}
@@ -34,13 +36,15 @@ class ProdutoDAO extends \BD_Connection {
 		$nome = $produto->getNome();
 		$categoria = $produto->getCategoria();
 		$preco = $produto->getPreco();
+		$medida = $produto->getMedida();
 		
 		try {
-			$sql = "UPDATE produto SET nome = :nome, categoria = :categoria, preco = :preco, dt_modif = NOW() WHERE id = :id";
+			$sql = "UPDATE produto SET nome = :nome, categoria = :categoria, preco = :preco, medida = :medida, dt_modif = NOW() WHERE id = :id";
 			$stmt = parent::getConnection()->prepare($sql);
 			$stmt->bindValue(':nome', $nome);
 			$stmt->bindValue(':categoria', $categoria);
 			$stmt->bindValue(':preco', $preco);
+			$stmt->bindValue(':medida', $medida);
 			$stmt->bindValue(':id', $id);
 			$stmt->execute();
 		} catch (\Exception $e) {

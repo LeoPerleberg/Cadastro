@@ -13,7 +13,7 @@
                     <div class="form-group row">
                         <label for="nome" class="col-sm-2 col-form-label">Nome</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome"/>
+                            <input type="text" required="required" class="form-control" name="nome" id="nome" placeholder="Nome"/>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -24,20 +24,24 @@
 								<option>Fruta</option>
 								<option>Verdura</option>
 								<option>Legume</option>
-								<option>!</option>
-								<option>?</option>
-								<option>.</option>
 							</select>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="preco" class="col-sm-2 col-form-label">Preço</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" name="preco" id="preco" placeholder="Preço"/>
+                        <div class="col-sm-6">
+                            <input type="text" required="required" class="form-control" name="preco" id="preco" placeholder="Preço"/>
+                        </div>
+                        <div class="col-sm-4">
+                            <select class="form-control" name="medida" id="medida">
+                                <option>kilo</option>
+                                <option>unidade</option>
+                                <option>dúzia</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="arquivo">Imagem</label>
+                        <label for="arquivo" class="col-sm-2 col-form-label">Imagem</label>
                         <div class="col-sm-10">
                             <input type="file" class="form-control-file" name="arquivo">
                         </div>

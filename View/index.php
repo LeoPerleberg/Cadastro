@@ -1,25 +1,99 @@
 <?php
-	@session_start();
-	if (@$_SESSION['id'] == NULL) {
-		$logado = 0;
-	} else {
-		$logado = 1;
-	}
+	use Model\UsuarioDAO;
+
+	include_once "../Model/ProdutoDAO.php";
+	include_once "../Model/UsuarioDAO.php";
+
+	$produtoDAO = new ProdutoDAO();
+	$usuarioDAO = new UsuarioDAO();
+
+	$id = 0;
+	$produtos = $produtoDAO->exibe($id);
+	
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
     <title>Index</title>
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <?php include_once "config.php"; ?>
+	<style type="text/css">
+		.square{
+		    width: 100%;
+		    height: 0; /* A mágica está aqui */
+		    padding-bottom: 100%; /* ... e está aqui */
+		    float: left;
+		    position: relative;
+		}
+		.block{
+		  position: absolute;
+		  text-align: center;
+		  width: 100%;
+		  height: 100%;
+		}
+		 
+		.block:before {
+		  content: '';
+		  display: inline-block;
+		  height: 100%; 
+		  vertical-align: middle;
+		  margin-right: -0.25em;
+		}
+		 
+		.centered {
+		  display: inline-block;
+		  vertical-align: middle;
+		  width: 80%;
+		}
+
+		.footer {
+		    background: #000;
+		}
+	</style>
 </head>
 <body>
 	<?php  
 		require_once 'NavBar.php';
 	?>
+
+
+<div class="row mx-lg-n5">
+	<?php
+	  if ($produtos == NULL) {
+	    echo "Você não possui produtos cadastrados";
+	  } else {
+	    foreach ($produtos as $produto) {
+	?>
+    <div class="text-center col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 border bg-light">
+		<div class="square">
+			<img src="imagens_produtos/<?php echo $produto->id; ?>.jpg" class="centered"/>
+		</div>
+
+        <a href="#"><?php echo $produto->nome; ?></a><br>
+        Preço: <strong><?php echo $produto->preco; ?>R$ por <?php echo $produto->medida; ?></strong><br>
+        Categoria: <strong><?php echo $produto->categoria; ?></strong><br>
+        Vendedor: <strong><?php echo $usuarioDAO->exibeNome($produto->produtor); ?></strong><br>
+        
+        <a href="#" class="btn btn-success">Comprar</a>
+
+    </div>
+	<?php
+	    }         
+	  }
+	?>
+</div>
+
+
+
+
+	<div class="footer">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+				<p class="h6">&copy All right Reversed. DiretoHortifruti</p>
+			</div>
+		</div>	
+	</div>
+
+
 </body>
 </html>
 

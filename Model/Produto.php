@@ -6,16 +6,17 @@ class Produto {
 	private $nome;
 	private $categoria;
 	private $preco;
+	private $medida;
 	private $dt_adicao;
 	private $dt_modif;
 	private $situacao;
-	private $imagem;
 	
-	public function __construct($produtor, $nome, $categoria, $preco) {
+	public function __construct($produtor, $nome, $categoria, $preco, $medida) {
 		$this->setProdutor($produtor);
 		$this->setNome($nome);
 		$this->setCategoria($categoria);
 		$this->setPreco($preco);
+		$this->setMedida($medida);
 	}
 	
 	public function getId() {
@@ -49,13 +50,21 @@ class Produto {
 	public function setCategoria($categoria) {
 		$this->categoria = $categoria;
 	}
-
+	
 	public function getPreco() {
 		return $this->preco;
 	}
-
+	
 	public function setPreco($preco) {
 		$this->preco = $preco;
+	}
+	
+	public function getMedida() {
+		return $this->medida;
+	}
+	
+	public function setMedida($medida) {
+		$this->medida = $medida;
 	}
 
 	public function getDt_adicao() {
@@ -80,13 +89,6 @@ class Produto {
 	
 	public function setSituacao($situacao) {
 		$this->situacao = $situacao;
-	}
-	public function getImagem() {
-		return $this->imagem;
-	}
-
-	public function setImagem($imagem) {
-		$this->imagem = $imagem;
 	}
 
 
